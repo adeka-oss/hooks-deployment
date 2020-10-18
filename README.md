@@ -1,51 +1,50 @@
 # hooks-deployment
-⚓️ Simple automated GIT Deployment using GIT Hooks
 
-## Prerequisit
-- basic usage git
-- basic terminal usage
+⚓️ Otomasi sederhana menggukanan git hooks pada deployment
 
-## Todo
+Panduan sederhana deploy menggunakan hooks dari git, sebagai alternatif ftp.
 
-1.Create a folder to deploy to on production server (i.e. your httpds folder)
 
-2.Add a bare repository on the productions server
+## Kebutuhan
+- Dasar penggunaan git
+- Dasar penggunaan terminal
 
-3.Add the post-receive hook script to the bare repository (and make it executable)
+## Latar Belakang
 
-4.Add the remote-repository resided on the production server to your local repository
+## Bagaimana ini bekerja?
 
-5.Push to the production server, relax.
+Pada kasus ini menambahkan perintah ["bare"](https://www.geeksforgeeks.org/bare-repositories-in-git/) pada repositori git yang diletakkan pada server dan untuk mempublikasikan branch master(sekarang main)  secara langsung mempublikasikannya ke dalam server.
 
-# 1. Have a local working-working copy ready
+## Langkah - langkah
+
+1. Membuat folder untuk production di server seperti pada umumnya di dalam web server. Seperti halnya /var/www
+
+2. Menambahkan bare repositori pada server *production*
+
+3. Membuat *script* **post-receive** untuk melakukan hook dari bare repository di server (Jangan lupa scriptnya executable 😘)
+
+4. Menambahkan *remote repository* ke production server yang ada di repositori lokal.
+
+5. Kemudian tinggal push dan santuy.
+
+
+# 1. Membuat folder pada server
 ```
-$ ssh user@server.com
-$ mkdir ~/deploy-folder
+$ ssh elitglobal@ganteng.com
+$ mkdir ~/deploy-folder-kamu
 ```
-# 2. Create a folder to deploy to
 
-# 3. Add a bare repository on the productions server
+# 2. Menambahkan bare repositori pada server
+Seperti menginisiasikan proyek git pada umumnya. Dan beri nama sesuai selera:
 ```
 $ git init --bare ~/project.git
-
 ```
-# 4. Add the post-receive hook script
+# 4. Membuat skrip yang dibuat agar executable
 ```
 chmod +x post-receive
 ```
-# 5. Add remote-repository localy
-```
-$ cd ~/path/to/working-copy/
-$ git remote add production demo@yourserver.com:project.git
-```
-# 6. Push to the production server
 
-```
-git push production master
-
-```
-
-post-receive
+Isi file **post-receive**
 
 ```bash
 #!/bin/bash
@@ -66,10 +65,17 @@ do
 done
 ```
 
-## Todo
-- Coretan ✅
-- Bikin dokumentasi
-- Translet ke ID
+# 5. Menambahkan remote-repository lokal untuk production server
+```
+$ cd ~/path/to/working-copy/
+$ git remote add production demo@yourserver.com:project.git
+```
+# 6. Melakukan push pada production server
+
+```
+git push production master
+
+```
 
 ## Credit
 - [noelboss](https://gist.github.com/noelboss/3fe13927025b89757f8fb12e9066f2fa)
