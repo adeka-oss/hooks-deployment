@@ -1,5 +1,8 @@
 # hooks-deployment
 
+
+![alt](img/chuakz.png)
+
 ⚓️ Otomasi sederhana menggukanan git hooks pada deployment
 
 Panduan sederhana deploy menggunakan hooks dari git, sebagai alternatif ftp.
@@ -79,3 +82,4 @@ git push production master
 
 ## Credit
 - [noelboss](https://gist.github.com/noelboss/3fe13927025b89757f8fb12e9066f2fa)
+- Icons by [Icon8](https://icons8.com/icons/set/git)
